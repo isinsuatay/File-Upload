@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <style>
+        body{
+            background: linear-gradient(100deg,purple,rgb(96, 96, 186),pink);
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+        }
+        .container{
+            width: calc(100% - 10rem);
+            height: calc(100% - 20rem);
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:cornflowerblue;
+            box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgb(78, 135, 242);
+        }
+    </style>
+</head>
+<body>
+    {% block body %}
+    <div class="container">
+        <form method="post" enctype="multipart/form-data" action="{% url 'index' %}">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Upload</button>
+        </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </div>
+    {% endblock body %}
+
+</body>
+</html>
